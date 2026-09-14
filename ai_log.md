@@ -24,3 +24,30 @@ Return only the SQL query in a clearly formatted code block, followed by a short
 ## Verification Performed
 
 I ran the AI-suggested monthly-by-category query against `bigbasket_capstone.db`, exported the result directly to `monthly_category_revenue.csv`, and checked that the output contained exactly 36 rows and that the grand total of `total_revenue` was exactly 88282.
+
+
+
+## AI Prompt #2 — Pandas IQR Outlier Cleaning
+
+### Role
+Act as a Python/Pandas data-cleaning assistant.
+
+### Context
+I am cleaning a BigBasket order dataset for a category performance analysis. The `amount_inr` column contains missing values and unusually large values. I need to detect outliers only among Delivered orders and cap upper outliers using the IQR method rather than deleting them.
+
+### Task
+Explain and provide Pandas code to:
+1. Select Delivered orders with non-null `amount_inr`.
+2. Calculate Q1, Q3, IQR, and the upper fence using the 1.5 × IQR rule.
+3. Count the values above the upper fence.
+4. Cap those values using `.clip(upper=upper_fence)`.
+5. Explain why capping is preferable to deleting these observations for this analysis.
+
+### Constraints
+- Do not replace missing `amount_inr` with zero or the mean.
+- Do not delete IQR outliers.
+- Use Pandas methods such as `.quantile()` and `.clip()`.
+- Keep the cleaning reproducible and suitable for the notebook.
+
+### Verification
+I re-ran the Pandas code on the dataset and obtained Q1 = 90, Q3 = 275, IQR = 185, and an upper fence of 552.5. The code identified 16 upper outliers. After applying `.clip(upper=552.5)`, the maximum capped value was 552.5. I also checked previously extreme rows and confirmed that their cleaned `amount_inr` values were capped at the upper fence.
