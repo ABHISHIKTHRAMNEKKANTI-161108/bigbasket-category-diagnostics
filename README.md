@@ -19,8 +19,7 @@ This project analyzes BigBasket category performance using SQL, Excel/Sheets, Ta
 
 ## Tableau Public Dashboard
 
-**Live Tableau Public Dashboard:** https://public.tableau.com/authoring/BigBasketCategoryPerformanceDiagonists/Dashboard1#1
-
+**Live Tableau Public Dashboard:** https://public.tableau.com/views/BigBasketCategoryPerformanceDiagonists/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
 ﻿
 
 ## Data Story
